@@ -11,7 +11,7 @@ pipeline {
         }
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+                withDockerRegistry(credentialsId: 'docker-hub'){
                     sh "sudo docker login -u jenilxo -p ${dockerHubPwd}"
                     sh "sudo docker push jenilxo/ynode:${DOCKER_TAG}"
                 }

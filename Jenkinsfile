@@ -6,14 +6,14 @@ pipeline {
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t jenilxo/ynode:${DOCKER_TAG} "
+                sh "sudo docker build . -t jenilxo/ynode:${DOCKER_TAG} "
             }
         }
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u jenilxo -p ${dockerHubPwd}"
-                    sh "docker push jenilxo/ynode:${DOCKER_TAG}"
+                    sh "sudo docker login -u jenilxo -p ${dockerHubPwd}"
+                    sh "sudo docker push jenilxo/ynode:${DOCKER_TAG}"
                 }
             }
         }

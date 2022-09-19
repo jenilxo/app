@@ -23,7 +23,7 @@ pipeline {
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh"
                 sshagent(['kops']) {
-                    sh "scp -o StrictHostKeyChecking=no service.yml node-app-pod.yml ec2-user@13.232.206.64:/home/ec2-user."
+                    sh "scp -o StrictHostKeyChecking=no service.yml node-app-pod.yml ec2-user@13.232.206.64:/home/ec2-user/."
                     }
                 script{
                     try{

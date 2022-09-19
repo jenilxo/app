@@ -11,8 +11,9 @@ pipeline {
         }
         stage('DockerHub Push'){
             steps{
-                withDockerRegistry(credentialsId: 'docker-hub'){
-                    sh "sudo docker login -u jenilxo -p ${dockerHubPwd}"
+                //withDockerRegistry(credentialsId: 'docker-hub')//
+		withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dpass', usernameVariable: 'duser')]) {
+                    sh "sudo docker login -u jenilxo -p ${dpass}"
                     sh "sudo docker push jenilxo/ynode:${DOCKER_TAG}"
                 }
             }

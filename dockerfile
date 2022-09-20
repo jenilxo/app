@@ -1,12 +1,17 @@
-FROM node:latest
+FROM node:17
 
+# Create app directory
 WORKDIR /usr/src/app
 
-COPY package.json ./
+# Install app dependencies
+COPY package*.json ./
+COPY yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
+# Bundle app source
 COPY . .
 
 EXPOSE 3000
-CMD [ "node", "index.js" ]
+
+CMD [ "yarn", "dev"]

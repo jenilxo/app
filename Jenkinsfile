@@ -22,7 +22,6 @@ pipeline {
             steps{
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG} "
-                sshagent(['k
                 script{
                     kubernetesDeploy(configs: "node-app-pod.yml", kubeconfigId: "kubernetes")
                     }
@@ -31,7 +30,7 @@ pipeline {
 				}
             }
         }
-    }
+    
 
 
 def getDockerTag(){

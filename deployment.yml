@@ -27,7 +27,7 @@ metadata:
   name: nodeapp-service
 spec:
   selector:
-    app: nodeapp 
+    app: nodeapp-deployment 
   type: LoadBalancer
   ports:
   - protocol: TCP

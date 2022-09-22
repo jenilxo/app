@@ -29,6 +29,9 @@ pipeline {
                     }catch(error){
                         sh "ssh ec2-user@13.232.206.64 kubectl create -f /home/ec2-user/deployment/. "
                     }
+		script{
+			emailext attachLog: true, body: '', compressLog: true, subject: 'Build Info', to: 'parekhmayank76@gmail.com'
+		}
                 }
 
 	        }

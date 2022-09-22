@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins
+        image: jenilxo/jksdind:latest
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+          readOnlyRootFilesystem: false
+          runAsUser: 0
+        ports:
+          - name: http-port
+            containerPort: 8080
+          - name: jnlp-port
+            containerPort: 50000
+        volumeMounts:
+          - name: jenkins-vol
+            mountPath: "/var/jenkins_home"
+          - name: docker-sock-volume
+            mountPath: "/var/run/docker.sock"
+          - name: docker-bin
+            mountPath: "/bin/docker"    
+      volumes:
+        - name: jenkins-vol
+          persistentVolumeClaim:
+              claimName: jenkins-pv-claim
+        - name: docker-sock-volume
+          hostPath:
+            path: "/var/run/docker.sock"
+        - name: docker-bin
+          hostPath:
+            path: "/usr/bin/docker"

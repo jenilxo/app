@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: nodeapp
-        image: jenilxo/ynode:tagVersion
+        image: jenilxo/ynode:tagVersion #tagVersion Is Parameter Changed By .changeTag.sh
         ports:
         - containerPort: 3000
 ---

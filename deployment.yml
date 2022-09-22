@@ -15,7 +15,7 @@ spec:
         app: nodeapp 
     spec:
       containers:
-      - name: nodeapp
+      - name: nodeserver
         image: jenilxo/ynode:tagVersion
         ports:
         - containerPort: 3000
@@ -27,7 +27,7 @@ metadata:
   name: nodeapp-service
 spec:
   selector:
-    app: nodeapp-deployment 
+    app: nodeapp
   type: LoadBalancer
   ports:
   - protocol: TCP

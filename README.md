@@ -5,5 +5,7 @@ External IP :
 http://ab921d70f8d8d4a64976248745f9f172-364799567.ap-south-1.elb.amazonaws.com/
 
 Jenkins URL :
-http://13.126.90.170:30000/
+http://13.126.90.170:30000/  
+ID : admin
+PASS : admin
 
